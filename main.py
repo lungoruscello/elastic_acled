@@ -1,16 +1,14 @@
-import geopandas as gpd
+import pandas as pd
 
 from elastic_acled import ACLEDIndexer
-from misc import LATLON
 
 
 def main(pwd):
-    rel_fpath = 'data/acled_master_africa.feather'
-    acled = gpd.read_feather(rel_fpath)
-    assert acled.crs == LATLON  # check the Coordinate Reference System (lat/lon, WGS84)
+    rel_fpath = 'data/example_events.csv'  # change as needed
+    acled = pd.read_csv(rel_fpath, low_memory=False)
 
     helper = ACLEDIndexer(
-        index_name='acled_africa',
+        index_name='test_acled',
         password=pwd,
         reset_index=True
     )
@@ -18,5 +16,5 @@ def main(pwd):
 
 
 if __name__ == '__main__':
-    es_pwd = "<your_elastic_pwd>"
+    es_pwd = "<your_elastic_pwd>"  # check README.md on where to find your password
     main(es_pwd)

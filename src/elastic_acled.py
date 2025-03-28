@@ -1,20 +1,21 @@
 """
-Functionalities to add geo-data on reported conflict events to a local Elasticsearch cluster.
+Functionalities to add geo-data on reported conflict events
+from the ACLED project to a local Elasticsearch cluster.
 
-S. Langenbach (ETHZ Zurich), GNU General Public License
+Author: S. Langenbach (ETHZ Zurich)
+Licence: MIT
 """
 import warnings
 from contextlib import contextmanager
 from copy import deepcopy
 from datetime import datetime
 
-import geopandas as gpd
 import pandas as pd
 from elasticsearch import Elasticsearch, helpers
 from tqdm.auto import tqdm
 from urllib3.connectionpool import InsecureRequestWarning
 
-from misc import *
+ES_PORT = 9200
 
 _SKELETON_CONFIG = dict(
         settings={
@@ -121,10 +122,12 @@ class ACLEDIndexer:
 
     def index_events(
             self,
-            event_df: pd.DataFrame | gpd.GeoDataFrame,
+            event_df: pd.DataFrame,
             id_column: str = 'event_id_cnty',  # ACLED event identifier
             chunk_size: int = 500
     ):
+        event_df['event_date'] = pd.to_datetime(event_df['event_date'])
+
         actions = self._stream_actions(  # returns a generator
             event_df,
             id_col=id_column,
@@ -144,7 +147,7 @@ class ACLEDIndexer:
         if failures:
             print(f"{failures} records failed to index.")
 
-    def _make_es_document(self, record: pd.Series | gpd.GeoSeries) -> dict:
+    def _make_es_document(self, record: pd.Series) -> dict:
         # Make the 'event_date' field JSON-serialisable
         record['event_date'] = record['event_date'].strftime(self.strftime)
 
@@ -183,7 +186,7 @@ class ACLEDIndexer:
 
     def _stream_actions(
             self,
-            df: pd.DataFrame | gpd.GeoDataFrame,
+            df: pd.DataFrame,
             id_col: str,
             pbar_desc='Indexing'
     ):

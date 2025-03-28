@@ -18,7 +18,7 @@ you may need to adjust individual commands based on your environment.*
 
 ## Setting up your Python environment
 
-Use the provided specification file to install a fresh conda environment named `geo_elastic`:
+Use the provided specification file to install a fresh conda environment named `pandas_elastic`:
 
 > conda env create -f ./environment_ubuntu.yml 
 
