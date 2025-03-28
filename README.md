@@ -86,9 +86,9 @@ Within the notebook, you will again be asked to provide the password for the 'el
 
 ## Importing front-end settings for a simple map dashboard 
 
-Kibana allows you to import front-end settings from previous sessions. The file `data/kibana_objects.ndjson` 
-contains settings for a simple interactive map that can be used to explore data on conflict events reported on 
-the African continent. Proceed as follows to import these settings: 
+Kibana allows you to import front-end settings from previous sessions. This repository includes
+the file `data/kibana_objects.ndjson`, which contains settings for a simple interactive map dashboard. 
+Proceed as follows to import these settings: 
 
 * Open the UI sidebar
 * Open "Management >> Stack Management"
