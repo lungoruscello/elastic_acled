@@ -3,6 +3,7 @@
 # *****************
 data/
 !data/.gitkeep
+!data/kibana_objects.ndjson
 
 
 # *****************
