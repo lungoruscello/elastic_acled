@@ -2,7 +2,7 @@
 Functionalities to add geo-data on reported conflict events
 from the ACLED project to a local Elasticsearch cluster.
 
-Author: S. Langenbach (ETHZ Zurich)
+Author: S. Langenbach (ETHZ)
 Licence: MIT
 """
 import warnings
