@@ -1,7 +1,7 @@
 # `elastic_acled`
 
 This repository provides functionalities to add time-stamped geo-data on conflict events 
-from ACLED to a local [Elasticsearch](https://www.elastic.co/) cluster. 
+from the [ACLED project](https://acleddata.com/) to a local [Elasticsearch](https://www.elastic.co/) cluster. 
 Doing so enables quick interactive data visualisation and data filtering with the [Kibana UI](https://www.elastic.co/kibana). 
 For a quick introduction to the Elastic software stack, see [this short IBM talk](https://www.youtube.com/watch?v=ZP0NmfyfsoM). 
 Note that users must provide **their own copy of ACLED data**, which is available for download [here](https://acleddata.com/data/). 
